@@ -1,30 +1,40 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div
+    class="container mx-auto max-w-prose p-2 min-h-screen flex flex-col items-center justify-center"
+  >
+    <h1 class="text-5xl tracking-widest">Canvas</h1>
+    <div class="p-3">
+      <h2 class="text-3xl">Courses</h2>
+      <ul>
+        <li v-for="course in courses" :key="course.id">
+          {{ course.name }}
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-3xl">Teachers</h2>
+      <ul>
+        <li v-for="teacher in teachers" :key="teacher.id">
+          {{ teacher.firstName + " " + teacher.lastName }}
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-3xl">Students</h2>
+      <ul>
+        <li v-for="student in students" :key="student.id">
+          {{ student.firstName + " " + student.lastName }}
+        </li>
+      </ul>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<script setup lang="ts">
+import { ref } from "vue";
+import { Course, Teacher, Student } from "./models/school";
+
+const courses = ref([] as Course[]);
+const teachers = ref([] as Teacher[]);
+const students = ref([] as Student[]);
+</script>

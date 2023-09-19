@@ -1,20 +1,20 @@
-export default interface Class {
+export interface Course {
   id: number;
   name: string;
+  teachers: Teacher[];
+  students: Student[];
 }
 
 export interface Student {
   id: number;
   firstName: string;
   lastName: string;
-  MiddleName: string;
-  classId: number;
+  middleName: string;
 }
 
 export interface Teacher {
   id: number;
   firstName: string;
   lastName: string;
-  MiddleName: string;
-  classId: number;
+  middleName: string;
 }
