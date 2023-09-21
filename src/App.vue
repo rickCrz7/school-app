@@ -47,6 +47,7 @@
                             v-for="student in students"
                             :key="student.id"
                             class="grid grid-rows-[1fr,auto] w-full text-left hover:bg-blue-400 p-1 px-2 rounded-sm border-2 border-gray-500 border-opacity-0 hover:border-opacity-100 cursor-pointer"
+                            @click="AddStudentToCourse(student)"
                         >
                             {{ student.firstName }} {{ student.lastName }}
                         </li>
@@ -113,6 +114,8 @@ const students = ref([] as Student[])
 const teacherSelect = ref([] as Teacher[])
 const studentSelect = ref([] as Student[])
 
+const itemSelected = ref(false)
+
 const AddCourses = () => {
     courses.value.push({
         id: Math.random(),
@@ -130,6 +133,7 @@ const AddTeacher = () => {
 
     var firstN = splitArray[0]
     var lastN = splitArray[1]
+
     teachers.value.push({
         id: Math.random(),
         firstName: firstN,
@@ -160,5 +164,10 @@ const AddTeacherToCourse = (teacher: Teacher) => {
 
 const AddStudentToCourse = (student: Student) => {
     studentSelect.value.push(student)
+}
+
+const RemoveStudentFromCourse = (student: Student) => {
+    studentSelect.value = studentSelect.value.filter((s) => s.id !== student.id)
+    
 }
 </script>
