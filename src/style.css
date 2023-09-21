@@ -1,7 +1,42 @@
+: :root {
+    --primary: #3a606e;
+    --secondary: #607b7d;
+    --tertiary: #828e82;
+    --fourth: #aaae8e;
+    --text-color: #e0e0e0;
+
+}
+
 html {
     font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
 }
+h1 {
+    @apply text-5xl;
+}
+h2 {
+    @apply text-4xl;
+}
+h3 {
+    @apply text-2xl;
+}
 
 body {
-    @apply bg-gray-700 text-white;
+    @apply bg-#3a606e text-#e0e0e0;
 }
+
+input {
+    @apply text-black;
+}
+.sec {
+    @apply bg-#607b7d text-#e0e0e0;
+}
+
+.third {
+    @apply bg-#828e82 text-#e0e0e0;
+}
+
+.fourth {
+    @apply bg-#aaae8e text-#e0e0e0;
+}
+
+
