@@ -1,7 +1,7 @@
 <template>
     <div class="p-4 items center">
         <div class="flex justify-center mt-4">
-            <h1 class="text-5xl tracking-widest">School</h1>
+            <h1 class="text-5xl tracking-widest">Dashboard</h1>
         </div>
     </div>
     <div class="container mx-auto p-12 min-h-screen flex flex-col">
@@ -127,7 +127,7 @@
             </div>
             <div class="card-body">
                 <div>
-                    <h3>Instructors</h3>
+                    <h3 class="font-semibold">Instructor(s)</h3>
                     <ul>
                         <li
                             v-for="teacher in course.teachers"
@@ -138,7 +138,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h3>Students</h3>
+                    <h3 class="font-semibold">Students</h3>
                     <ul>
                         <li
                             v-for="student in course.students"
