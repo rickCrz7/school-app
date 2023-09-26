@@ -39,4 +39,35 @@ input {
     @apply bg-#aaae8e text-#e0e0e0;
 }
 
+.card {
+    background-color: #828e82 ;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+  }
+  
+  .card-header {
+    background-color: #aaae8e;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  
+  .card-body {
+    @apply p-4;
+  }
+  
+  .card-body > div:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+  
+  .card-body h3 {
+    @apply text-xl;
+    margin-bottom: 0.5rem;
+  }
 
