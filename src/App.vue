@@ -34,6 +34,12 @@
                         placeholder="Add a new teacher"
                         @keyup.enter="AddTeacher"
                     />
+                    <button
+                        class="w-full bg-blue-400 hover:bg-blue-200 text-white font-bold py-1 px-4 rounded mt-2"
+                        @click="AddTeacher"
+                    >
+                        Add Teacher
+                    </button>
                     <ul class="mt-2">
                         <li
                             v-for="teacher in teachers"
@@ -54,6 +60,12 @@
                         placeholder="Add a new student"
                         @keyup.enter="AddStudents"
                     />
+                    <button
+                        class="w-full bg-blue-400 hover:bg-blue-300 text-white font-bold py-1 px-4 rounded mt-2"
+                        @click="AddStudents"
+                    >
+                        Add Student
+                    </button>
                     <ul class="mt-2">
                         <li
                             v-for="student in students"
@@ -221,7 +233,11 @@ const DeselectStudent = (student: Student) => {
 }
 
 const DeleteCourse = (course: Course) => {
-    courses.value.splice(courses.value.indexOf(course), 1)
+    if (confirm('Are you sure you want to delete this Course?')) {
+        courses.value.splice(courses.value.indexOf(course), 1)
+    } else {
+        return
+    }
 }
 
 // const searchCourseByTeacher = (teacher: Teacher) => {
