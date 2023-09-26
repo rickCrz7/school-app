@@ -192,6 +192,7 @@ const AddTeacher = () => {
 
     var firstN = splitArray[0]
     var lastN = splitArray[1]
+
     teachers.value.push({
         id: Math.random(),
         firstName: firstN,
