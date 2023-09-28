@@ -111,6 +111,18 @@
                 Add Course
             </button>
         </div>
+        <!-- <div
+            class="sec p-4 rounded-t-lg grid grid-cols-2 cursor-pointer mt-5"
+            @click="showSearchToggle"
+        >
+            <h2 class="flex justify-self-auto mb-2">Search</h2>
+            <span class="flex justify-end items-center">
+                <i
+                    class="i-mdi:plus-circle-outline text-2xl cursor-pointer hover:text-blue-400"
+                    @click="showSearchToggle"
+                ></i>
+            </span>
+        </div> -->
         <div
             v-for="course in courses"
             v-show="courses.length !== 0"
@@ -119,11 +131,18 @@
         >
             <div class="card-header grid grid-cols-2">
                 <h2 class="card-title">{{ course.name }}</h2>
-                <span
-                    class="card-delete flex justify-end items-center cursor-pointer hover:text-red-400"
-                    @click="DeleteCourse(course)"
-                    ><i class="i-mdi:trash text-2xl"></i
-                ></span>
+                <span class="flex justify-end gap-4">
+                    <span
+                        class="card-delete flex justify-end items-center cursor-pointer hover:text-yellow-400"
+                        @click="toggleEdit"
+                        ><i class="i-mdi:pencil text-2xl"></i
+                    ></span>
+                    <span
+                        class="card-delete flex justify-end items-center cursor-pointer hover:text-red-400"
+                        @click="DeleteCourse(course)"
+                        ><i class="i-mdi:trash text-2xl"></i
+                    ></span>
+                </span>
             </div>
             <div class="card-body">
                 <div>
@@ -132,8 +151,14 @@
                         <li
                             v-for="teacher in course.teachers"
                             :key="teacher.id"
+                            class="flex justify-between"
                         >
                             {{ teacher.firstName }} {{ teacher.lastName }}
+                            <i
+                                v-if="edit"
+                                class="i-mdi:trash text-2xl justify-end items-center cursor-pointer hover:text-red-400"
+                                @click="DeleteTeacherFromCourse(teacher)"
+                            ></i>
                         </li>
                     </ul>
                 </div>
@@ -143,8 +168,14 @@
                         <li
                             v-for="student in course.students"
                             :key="student.id"
+                            class="flex justify-between"
                         >
                             {{ student.firstName }} {{ student.lastName }}
+                            <i
+                                v-if="edit"
+                                class="i-mdi:trash text-2xl justify-end items-center cursor-pointer hover:text-red-400"
+                                @click="DeleteStudentFromCourse(student)"
+                            ></i>
                         </li>
                     </ul>
                 </div>
@@ -169,9 +200,25 @@ const teacherSelect = ref([] as Teacher[])
 const studentSelect = ref([] as Student[])
 
 const showAdd = ref(false)
+const showSearch = ref(false)
+const clear = ref(false)
+
+const edit = ref(false)
 
 const showAddToggle = () => {
     showAdd.value = !showAdd.value
+}
+
+const showSearchToggle = () => {
+    showSearch.value = !showSearch.value
+}
+
+const clearSearch = () => {
+    clear.value = !clear.value
+}
+
+const toggleEdit = () => {
+    edit.value = !edit.value
 }
 
 const AddCourses = () => {
@@ -239,6 +286,18 @@ const DeleteCourse = (course: Course) => {
     } else {
         return
     }
+}
+
+const DeleteTeacherFromCourse = (teacher: Teacher) => {
+    courses.value.forEach((course) => {
+        course.teachers.splice(course.teachers.indexOf(teacher), 1)
+    })
+}
+
+const DeleteStudentFromCourse = (student: Student) => {
+    courses.value.forEach((course) => {
+        course.students.splice(course.students.indexOf(student), 1)
+    })
 }
 
 // const searchCourseByTeacher = (teacher: Teacher) => {
